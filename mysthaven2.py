@@ -1,5 +1,6 @@
-# ZDF: Zombie Defense Force - Mysthaven
-# Player variables (shared throughout the game)
+# Adventure Academy :Zombie survival game
+
+# # Player variables (shared throughout the game)
 health = 100
 food = 20
 water = 50
@@ -10,10 +11,9 @@ weapon = "Tire Iron"
 #inventory = [weapon]
 
 # FUNCTIONS #
-def wip():
+def work_in_progress():
     print("\nThis is the end of the current simulation. More content will be added in the future.\n")
     input("\nPress Enter to END the Simulation...Thanks for playing.")
-
 def display_stats(health, food, water, day, time, infection, weapon): # this displays player stats
     #Display the player's status without changing any values.
     print("_" * 150)
@@ -48,7 +48,6 @@ def display_stats(health, food, water, day, time, infection, weapon): # this dis
     print(f"Infection: {infection}")
     print("")
     print("_" * 150)
-
 def take_action(minutes, food_cost=0, water_cost=0): # this is thE attrition of stats and time 
     #Advance the clock, consume supplies, and apply starvation/dehydration damage.
     global health, food, water, day, time
@@ -67,7 +66,6 @@ def take_action(minutes, food_cost=0, water_cost=0): # this is thE attrition of 
         health = max(0, health - 5)
     if water == 0:
         health = max(0, health - 10)
-
 def get_choice(prompt, valid_choices): #Accept a numbered response; allow C/I/Q without losing the current choice.
         while True:
             choice = input(prompt).strip().upper()
@@ -83,14 +81,13 @@ def get_choice(prompt, valid_choices): #Accept a numbered response; allow C/I/Q 
                 return choice
             else:
                 print("Invalid choice. Please select one of:", ", ".join(valid_choices))
-
 def display_title():
     print("=" * 150)
     print("                            Adventure Academy: Zombie Survival")
     print("=" * 150)
     print("\n\n")
-
 def display_introduction(): # Displays the story and allows player to choose where they start the game from
+    print("_" * 150)
     print("""Five months ago, the world changed forever.....
 
     A mysterious infection spread across the country, turning ordinary people into mindless zombies. Cities collapsed, governments disappeared, and
@@ -112,8 +109,6 @@ def display_introduction(): # Displays the story and allows player to choose whe
     4. First Avenue from the East
     """)
     print("_" * 100)
-    get_choice()
-
 def display_directions():
     print("=" * 150)
     print("                                            HOW TO PLAY")
@@ -142,62 +137,6 @@ def display_directions():
         Enter "Q" to check your current objectives
     
         """)
-
-
-    entrance_choice = get_choice("Enter your choice (1, 2, 3, or 4): ", {"1", "2", "3", "4"})
-    if entrance_choice == "1":
-        print("""
-            You are greeted by a worn wooden sign: 'Welcome to Mysthaven. Where Peace and Home are the same thing.'
-            There is a ripped and torn bundle of rags near the sign. The bundle appears to be a satchel or bag.
-            The bag has obvious signs of distress and reddish-brown stains on it.
-            But it's probably best not to think about what those stains truly are.
-            """)
-        take_action(minutes=10, food_cost=2, water_cost=4)
-           
-            
-    
-            #print("\nYou pick up the bag and carry it with you as you continue toward Mysthaven.")
-            #inventory.append("Worn Satchel")
-            #take_action(minutes=5, water_cost=1)
-            
-        # This is Trucktrail Road path
-    elif entrance_choice == "2":
-        print("""
-        The old dirt road was well used, probably by the farmers who owned this land before the dead
-        started walking. Brown fields of overgrown crops stretch along both sides. Up ahead, you see
-        two figures. You cannot tell whether they are alive, but by the way they hold themselves suggests
-        They are not.
-    
-            1. I approach the wearily
-            2. I attack them with my weapon
-            3. I go into the fields and avoid them completely
-            4. I sneak past them quietly using the crops as cover
-            """)
-        take_action(minutes=15, food_cost=2, water_cost=4)
-        dirt_road_choice = get_choice("Enter your choice (1, 2, 3, or 4): ", {"1", "2", "3", "4"})
-    
-    
-         # Railroad Tracks   
-    elif entrance_choice == "3":
-        print("""
-            You approach Mysthaven from the south, following the railroad tracks. After days of travel
-            with little food or water, you stumble and fall, scraping your knee and hand. As you pick
-            yourself up, you see a neighborhood about a mile up the tracks to the east.
-            """)
-        take_action(minutes=5, food_cost=2, water_cost=4)
-        health = max(0, health - 2)
-    
-    elif entrance_choice == "4":
-        print("""
-        You enter Mysthaven's commercial district. Storefronts line the streets, and about 15 vehicles
-        are piled up at the intersection of Main Street and First Avenue. It looks as if a serious
-        accident happened during the initial panic.
-    
-        Several zombies shuffle among the cars, bumping and sliding along the vehicles as they move.
-        Others stand in the road as if waiting for something to attract their attention.
-        """)
-        take_action(minutes=5, food_cost=2, water_cost=4)
-
 def start_sign(): # If players choose to start at the sign
     print("""
     You are greeted by a worn wooden sign: 'Welcome to Mysthaven. Where Peace and Home are the same thing.'
@@ -216,7 +155,6 @@ def start_sign(): # If players choose to start at the sign
     3. Pick up the bag and search it later
        """)
     get_choice("Enter your choice (1, 2, or 3): ", {"1", "2", "3"})
-
 def start_trucktrail(): # if player choice is to start at the Trucktrail Road
     print("""
         The old dirt road was well used, probably by the farmers who owned this land before the dead
@@ -232,7 +170,6 @@ def start_trucktrail(): # if player choice is to start at the Trucktrail Road
         4. I sneak past them quietly using the crops as cover  
         """)
     print("_" * 150)
-
 def start_railroad(): # player chooses to start at the railroad tracks
     print("""
         You approach Mysthaven from the south, following the railroad tracks. After days of travel
@@ -241,7 +178,6 @@ def start_railroad(): # player chooses to start at the railroad tracks
         """)
     take_action(minutes=5, food_cost=2, water_cost=4)
     health = max(0, health - 2)
-
 def start_first_ave(): # player chooses to start on 1st Avenue
     print("""You enter Mysthaven's commercial district. Storefronts line the streets, and about 15 vehicles
             are piled up at the intersection of Main Street and First Avenue. It looks as if a serious
@@ -251,6 +187,8 @@ def start_first_ave(): # player chooses to start on 1st Avenue
             Others stand in the road as if waiting for something to attract their attention.
             """)
 
+
+
     
 # GAME CODE STARTS HERE
 #Start with intro, title, directions
@@ -258,6 +196,7 @@ display_title()
 display_directions()
 input("\nPress Enter to Continue...")
 display_introduction()
+
 
 entrance_choice = get_choice("Enter your choice (1, 2, 3, or 4): ", {"1", "2", "3", "4"})
 if entrance_choice == "1":
@@ -269,4 +208,4 @@ elif entrance_choice == "3":
 elif entrance_choice == "4":
     start_first_ave()
 
-    wip()
+work_in_progress()
