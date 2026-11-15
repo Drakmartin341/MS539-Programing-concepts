@@ -1,4 +1,4 @@
-# ZDF: Zombie Defense Force
+# Adventure Academy: Zombie Survival
 
 **A text-based zombie survival and rebuilding adventure built with Python.**
 
